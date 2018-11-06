@@ -3,11 +3,9 @@ spring.datasource.username=root
 spring.datasource.password=
 
 # enable sql displaying in log
-#spring.jpa.show-sql=true
+spring.jpa.show-sql=true
 
-#https://stackoverflow.com/questions/30118683/how-to-log-sql-statements-in-spring-boot
 spring.jpa.properties.hibernate.show_sql=true
 spring.jpa.properties.hibernate.use_sql_comments=true
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.properties.hibernate.type=trace 
-

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ProductdataApplicationTests" project="productdata" tests="7" started="7" failures="0" errors="0" ignored="0">
+  <testsuite name="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.311">
+    <testcase name="testCount" classname="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.17"/>
+    <testcase name="testRead" classname="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.022"/>
+    <testcase name="testDeleteExists" classname="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.01"/>
+    <testcase name="contextLoads" classname="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.002"/>
+    <testcase name="testCreate" classname="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.067"/>
+    <testcase name="testDelete" classname="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.032"/>
+    <testcase name="testUpdate" classname="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.007"/>
+  </testsuite>
+</testrun>

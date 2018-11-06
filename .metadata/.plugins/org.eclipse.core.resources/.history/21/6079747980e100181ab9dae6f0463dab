@@ -48,11 +48,6 @@ public class ProductdataApplicationTests {
 	}
 	
 	@Test
-	public void testCount() {
-		System.out.println("Count: " + repository.count()); 
-	}
-	
-	@Test
 	public void testUpdate() {
 		int id = 1;
 		if(repository.existsById(id)) {

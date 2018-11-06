@@ -38,29 +38,18 @@ public class ProductdataApplicationTests {
 	
 	@Test
 	public void testRead() {
-		int id = 1;
-		if(repository.existsById(id)) {
-			Optional<Product> findById = repository.findById(id);
-			Product product = findById.get();
-			assertNotNull(product);
-			assertEquals("Iphone", product.getName());
-		}
-	}
-	
-	@Test
-	public void testCount() {
-		System.out.println("Count: " + repository.count()); 
+		Optional<Product> findById = repository.findById(1);
+		Product product = findById.get();
+		assertNotNull(product);
+		assertEquals("Iphone", product.getName());
 	}
 	
 	@Test
 	public void testUpdate() {
-		int id = 1;
-		if(repository.existsById(id)) {
-			Optional<Product> findById = repository.findById(id);
-			Product product = findById.get();
-			product.setPrice(1500d);
-			repository.save(product);
-		}
+		Optional<Product> findById = repository.findById(1);
+		Product product = findById.get();
+		product.setPrice(1500d);
+		repository.save(product);
 	}
 	
 	@Test
