@@ -1,0 +1,5 @@
+package com.rajesh.springdata.product.entities;
+
+public class Product {
+
+}

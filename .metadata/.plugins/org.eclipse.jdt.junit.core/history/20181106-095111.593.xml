@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ProductdataApplicationTests (Failed Tests first)" project="productdata" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.103">
+    <testcase name="testRead" classname="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.082"/>
+    <testcase name="contextLoads" classname="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.002"/>
+    <testcase name="testCreate" classname="com.rajesh.springdata.product.ProductdataApplicationTests" time="0.019"/>
+  </testsuite>
+</testrun>
