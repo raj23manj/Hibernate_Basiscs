@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +39,7 @@ public class JpqlandnativesqlApplicationTests {
 	
 	@Test
 	public void testFindAllStudents() {
-		System.out.println(repository.findAllStudents());
+		System.out.println(repository.findAllStudents(new PageRequest(1, 7, Direction.ASC, "id")));
 	}
 	
 	@Test
