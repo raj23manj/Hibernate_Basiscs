@@ -11,6 +11,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.rajesh.springdata.product.entities.Product;
@@ -121,6 +126,61 @@ public class ProductdataApplicationTests {
 	public void testFindByIdIn() {
 		List<Product> products = repository.findByIdIn(Arrays.asList(1,2,3));
 		products.forEach(product -> System.out.println("Product: " + product.getName()));	
+	}
+	
+	// Paging and Sorting
+	
+	@Test
+	public void testFindAllPaging() {
+		 Pageable pageable = new PageRequest(3, 1);
+		
+		 Page<Product> results = repository.findAll(pageable);
+		 results.forEach(product -> System.out.println("Product: " + product.getName()));	
+	}
+	
+	@Test
+	public void testFindAllSorting() {
+		 Sort sort = new Sort(Direction.DESC, "name");
+		 Iterable<Product> results = repository.findAll(sort);
+		 results.forEach(product -> System.out.println("Product: " + product.getName()));	
+	}
+	
+	@Test
+	public void testFindAllMultipleSorting() {
+		 Sort sort = new Sort(Direction.DESC, "name", "price");
+		Iterable<Product> results = repository.findAll(sort);
+		 results.forEach(product -> System.out.println("Product: " + product.getName() + ":" + product.getPrice()));	
+	}
+	
+	@Test
+	public void testFindAllMultipleSortingDirections() {
+		 Sort sort = new Sort(new Sort.Order(Direction.DESC, "name"), new Sort.Order(Direction.ASC, "price"));
+		Iterable<Product> results = repository.findAll(sort);
+		 results.forEach(product -> System.out.println("Product: " + product.getName() + ":" + product.getPrice()));	
+	}
+	
+	@Test
+	public void testFindAllSortingDirectionsAndPaging() {
+		Pageable pageable = new PageRequest(0, 2, Direction.DESC, "name");
+		Page<Product> results = repository.findAll(pageable);
+		results.forEach(product -> System.out.println("Product: " + product.getName() + ":" + product.getPrice()));	
+	}
+	
+	@Test
+	public void testFindAllMultipleSortingDirectionsAndPaging() {
+		Sort sort = new Sort(new Sort.Order(Direction.DESC, "name"), new Sort.Order(Direction.ASC, "price"));
+		Pageable pageable = new PageRequest(0, 4, sort);
+		Page<Product> results = repository.findAll(pageable);
+		results.forEach(product -> System.out.println("Product: " + product.getName() + ":" + product.getPrice()));	
+	}
+	
+	@Test
+	public void testCustomFinderPaging() {
+		Sort sort = new Sort(new Sort.Order(Direction.DESC, "name"), new Sort.Order(Direction.ASC, "price"));
+		Pageable pageable = new PageRequest(0, 4, sort);
+		
+		List<Product> results = repository.findByIdIn(Arrays.asList(1,2,3,4), pageable);		
+		results.forEach(product -> System.out.println("Product: " + product.getName() + ":" + product.getPrice()));	
 	}
 
 }

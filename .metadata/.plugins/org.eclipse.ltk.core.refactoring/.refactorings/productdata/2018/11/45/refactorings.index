@@ -2,3 +2,5 @@
 1541480086839	Extract local variable 'id'
 1541480126530	Extract local variable 'id'
 1541557859538	Extract local variable 'products'
+1541560105441	Extract local variable 'results'
+1541560597079	Extract local variable 'sort'
