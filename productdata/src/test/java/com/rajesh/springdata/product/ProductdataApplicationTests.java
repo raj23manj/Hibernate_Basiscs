@@ -3,6 +3,8 @@ package com.rajesh.springdata.product;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Test;
@@ -77,6 +79,48 @@ public class ProductdataApplicationTests {
 			System.out.println("Exists");
 			repository.deleteById(productId);
 		}
+	}
+	
+	@Test
+	public void testFindByName() {
+		List<Product> products = repository.findByName("IWatch");
+		products.forEach(product -> System.out.println("Product: " + product.getPrice()));	
+	}
+	
+	@Test
+	public void testFindByNameAndDesc() {
+		List<Product> products = repository.findByNameAndDesc("IWatch", "From Apple Inc");
+		products.forEach(product -> System.out.println("Product: " + product.getPrice()));	
+	}
+	
+	@Test
+	public void testFindByPrice() {
+		List<Product> products = repository.findByPriceGreaterThan(1000d);
+		products.forEach(product -> System.out.println("Product: " + product.getPrice()));	
+	}
+	
+	@Test
+	public void testFindByDescContains() {
+		List<Product> products = repository.findByDescContains("Apple");
+		products.forEach(product -> System.out.println("Product: " + product.getPrice()));	
+	}
+	
+	@Test
+	public void testFindByPriceBetween() {
+		List<Product> products = repository.findByPriceBetween(1000d, 2000d);
+		products.forEach(product -> System.out.println("Product: " + product.getPrice()));	
+	}
+	
+	@Test
+	public void testFindByDescLike() {
+		List<Product> products = repository.findByDescLike("%LG%");
+		products.forEach(product -> System.out.println("Product: " + product.getPrice()));	
+	}
+	
+	@Test
+	public void testFindByIdIn() {
+		List<Product> products = repository.findByIdIn(Arrays.asList(1,2,3));
+		products.forEach(product -> System.out.println("Product: " + product.getName()));	
 	}
 
 }
