@@ -30,7 +30,7 @@ public class HibernateinheritanceApplicationTests {
 	@Test
 	public void testSingleTableInhertanceCheck() {
 		Check cc = new Check();
-		cc.setId(1);
+		cc.setId(2);
 		cc.setAmount(1000d);
 		cc.setChecknumber("asd123123dqasd");;
 		

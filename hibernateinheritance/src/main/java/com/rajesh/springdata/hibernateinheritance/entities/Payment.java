@@ -7,7 +7,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED) // most used inheritance type
+//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 //@DiscriminatorColumn(name="pmode", discriminatorType=DiscriminatorType.STRING) // type column in table
 public abstract class Payment {
 	
