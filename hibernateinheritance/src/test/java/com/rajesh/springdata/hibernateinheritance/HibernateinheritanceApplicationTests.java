@@ -20,6 +20,7 @@ public class HibernateinheritanceApplicationTests {
 	@Test
 	public void testSingleTableInhertanceCredit() {
 		CreditCard cc = new CreditCard();
+		cc.setId(1);
 		cc.setAmount(1000d);
 		cc.setCreditcard("1234-5678-1234");
 		
@@ -29,10 +30,13 @@ public class HibernateinheritanceApplicationTests {
 	@Test
 	public void testSingleTableInhertanceCheck() {
 		Check cc = new Check();
+		cc.setId(1);
 		cc.setAmount(1000d);
 		cc.setChecknumber("asd123123dqasd");;
 		
 		repository.save(cc);
 	}
+	
+	
 
 }

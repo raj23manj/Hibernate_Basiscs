@@ -1,10 +1,11 @@
 package com.rajesh.springdata.hibernateinheritance.entities;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue("ch")
+@Table(name="bankcheck")
+//@DiscriminatorValue("ch")
 public class Check extends Payment{
 	private String checknumber;
 
