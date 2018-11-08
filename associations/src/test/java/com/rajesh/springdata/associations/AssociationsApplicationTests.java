@@ -2,6 +2,7 @@ package com.rajesh.springdata.associations;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -21,6 +22,9 @@ import com.rajesh.springdata.associations.onetomany.entities.Customer;
 import com.rajesh.springdata.associations.onetomany.entities.PhoneNumber;
 import com.rajesh.springdata.associations.onetomany.repos.CustomerRepository;
 import com.rajesh.springdata.associations.onetomany.repos.ProgrammerRepository;
+import com.rajesh.springdata.associations.onetoone.entities.License;
+import com.rajesh.springdata.associations.onetoone.entities.Person;
+import com.rajesh.springdata.associations.onetoone.repos.LicenseRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,6 +34,9 @@ public class AssociationsApplicationTests {
 	
 	@Autowired
 	ProgrammerRepository pRepository;
+	
+	@Autowired
+	LicenseRepository lRepository;
 
 	@Test
 	public void contextLoads() {
@@ -130,5 +137,22 @@ public class AssociationsApplicationTests {
 		System.out.println(p1);
 		System.out.println(p1.getProjects());
 	}
+	
+	// One to One Associations
+	@Test
+	public void testOnetoOneCreateLicense() {
+		License l = new License();
+		l.setType("CAR");
+		l.setValidFrom(new Date());
+		l.setValidTo(new Date());
 		
+		Person person = new Person();
+		person.setAge(27);
+		person.setFirstName("Rajesh");
+		person.setLastName("Manjunath");
+
+		l.setPerson(person);
+		
+		lRepository.save(l);
+	}
 }
