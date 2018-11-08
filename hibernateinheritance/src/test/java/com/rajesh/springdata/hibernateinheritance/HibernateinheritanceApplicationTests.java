@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.rajesh.springdata.hibernateinheritance.entities.Check;
 import com.rajesh.springdata.hibernateinheritance.entities.CreditCard;
 import com.rajesh.springdata.hibernateinheritance.entities.Payment;
 import com.rajesh.springdata.hibernateinheritance.repos.PaymentRepository;
@@ -17,10 +18,19 @@ public class HibernateinheritanceApplicationTests {
 	PaymentRepository repository;
 
 	@Test
-	public void testSingleTableInhertance() {
+	public void testSingleTableInhertanceCredit() {
 		CreditCard cc = new CreditCard();
 		cc.setAmount(1000d);
 		cc.setCreditcard("1234-5678-1234");
+		
+		repository.save(cc);
+	}
+	
+	@Test
+	public void testSingleTableInhertanceCheck() {
+		Check cc = new Check();
+		cc.setAmount(1000d);
+		cc.setChecknumber("asd123123dqasd");;
 		
 		repository.save(cc);
 	}
