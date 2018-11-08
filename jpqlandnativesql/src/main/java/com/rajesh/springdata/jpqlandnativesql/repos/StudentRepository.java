@@ -27,4 +27,16 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
 	@Modifying // from spring data tells spring that it is modifying delete/update/insert
 	@Query("delete from Student where firstName=:firstName")
 	void deleteStudentsByFirstName(@Param("firstName") String firstName);
+	
+	// Native Query
+	
+	@Query(value="select * from student", nativeQuery=true)
+	List<Student> findAllStudentsNQ();
+	
+	@Query(value="select * from student  where fname=:fname", nativeQuery=true) 
+	List<Student> findByFirstNameNQ(@Param("fname") String firstName);
+	
+	@Query(value="select st.fname, st.lname from student st", nativeQuery=true) 
+	List<Object[]> findAllStudentsPartialDataNQ();
 }
+

@@ -64,4 +64,20 @@ public class JpqlandnativesqlApplicationTests {
 	public void testDeleteAllStudentsByName() {
 		repository.deleteStudentsByFirstName("bill");	
 	}
+	// Native Query
+	@Test
+	public void testFindAllStudentsNQ() {
+		System.out.println(repository.findAllStudentsNQ());
+	}
+	
+	@Test
+	public void testFindByFirstNameNQ() {
+		System.out.println(repository.findByFirstNameNQ("John"));
+	}
+	
+	@Test
+	public void testFindAllStudentsPartialDataNQ() {
+		List<Object[]> students = repository.findAllStudentsPartialDataNQ();
+		students.forEach(s -> System.out.println("FirstName: " + s[0] +" LastName: " +s[1]));		
+	}
 }
