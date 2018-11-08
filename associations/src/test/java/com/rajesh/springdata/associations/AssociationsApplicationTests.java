@@ -2,6 +2,7 @@ package com.rajesh.springdata.associations;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -14,15 +15,21 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rajesh.springdata.associations.manytomany.entities.Programmer;
+import com.rajesh.springdata.associations.manytomany.entities.Project;
 import com.rajesh.springdata.associations.onetomany.entities.Customer;
 import com.rajesh.springdata.associations.onetomany.entities.PhoneNumber;
 import com.rajesh.springdata.associations.onetomany.repos.CustomerRepository;
+import com.rajesh.springdata.associations.onetomany.repos.ProgrammerRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AssociationsApplicationTests {
 	@Autowired
 	CustomerRepository repository;
+	
+	@Autowired
+	ProgrammerRepository pRepository;
 
 	@Test
 	public void contextLoads() {
@@ -95,4 +102,33 @@ public class AssociationsApplicationTests {
 		repository.deleteById(9L);
 		
 	}
+	
+	// ManyToMany Associations
+	// default load type is lazy like one many
+	// same thing applies like one to many
+	
+	@Test
+	public void testManyToMayCreateAssociations() {
+		Programmer programmer = new Programmer();
+		programmer.setName("Rajesh");
+		programmer.setSal(1000000);
+		
+		HashSet<Project> projects = new HashSet<Project>();
+		Project project1 = new Project();
+		
+		project1.setName("Hiberbate Project");
+		projects.add(project1);
+		
+		programmer.setProjects(projects);
+		pRepository.save(programmer);
+	}
+	
+	@Test
+	//@Transactional
+	public void testManyToMayFindAssociations() {
+		Programmer p1 = pRepository.findById(1).get();
+		System.out.println(p1);
+		System.out.println(p1.getProjects());
+	}
+		
 }
