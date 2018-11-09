@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.mysql.cj.Session;
 import com.rajesh.springdata.product.entities.Product;
 import com.rajesh.springdata.product.repos.ProductRepository;
 
@@ -27,6 +31,9 @@ public class ProductdataApplicationTests {
 	
 	@Autowired
 	ProductRepository repository;
+	
+	@Autowired
+	EntityManager entityManager; // used by spring repository internally
 
 	@Test
 	public void contextLoads() {
@@ -182,5 +189,26 @@ public class ProductdataApplicationTests {
 		List<Product> results = repository.findByIdIn(Arrays.asList(1,2,3,4), pageable);		
 		results.forEach(product -> System.out.println("Product: " + product.getName() + ":" + product.getPrice()));	
 	}
+	
+	// caching test Level1 each session having its own cache
+	@Test
+	@Transactional // level 1 caching is enabled, marking on service and tests. 
+	public void testCaching() {
+		// see console, only once query is fired, not adding @Transactional will fire queries 3 times
+//		Product product = repository.findById(1).get();
+//		product.setDesc("Caching");
+//		repository.save(product);  // need to test this
+		
+		org.hibernate.Session session = entityManager.unwrap(org.hibernate.Session.class);
+		Product product = repository.findById(1).get();
+		
+		repository.findById(1).get(); // not run query, already in cache
+		// for level 2 after setting up cache there will be one query
+		session.evict(product); // removing from cache
+		repository.findById(1).get(); // will run query
+	}
+	
+	// EH cache, level 2 Cache Provider:
+	
 
 }

@@ -1,0 +1,10 @@
+<ehcache>
+	<!-- says to use java temp dir -->
+	<diskStore path="java.io.tmpdir"/>
+	<!-- configuring default cache, saying 100 cached elemets, eternal is not to live forever, object is not accessed will be removed, after 10 secs object will be removed,  if any memory issue will be saved to disk-->
+	<defaultCache maxElementsInMemory="100" 
+				  eternal="false" 
+				  timeToIdleSeconds="5" 
+				  timeToLiveSeconds="10" 
+				  overflowToDisk="true"/>
+</ehcache>

@@ -4,3 +4,4 @@
 1541557859538	Extract local variable 'products'
 1541560105441	Extract local variable 'results'
 1541560597079	Extract local variable 'sort'
+1541689111970	Extract local variable 'session'
