@@ -5,3 +5,4 @@
   - Section 7 -> Productdata
   - Section 8 -> jpqlandnativesql
   - Section 9 -> Paging and Sorting with JPQL
+  - Section 10 -> Native SQL Query
